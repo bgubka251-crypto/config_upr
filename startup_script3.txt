@@ -1,11 +1,7 @@
 # Стартовый скрипт для эмулятора
 echo Добро пожаловать в эмулятор!
 pwd
-ls
-cd /tmp
-pwd
-dsadasdasd
-ls
-cd ~
-pwd
+dwfsefsfsf
+fsdfs
+fsdfsfsfs
 echo Скрипт завершен

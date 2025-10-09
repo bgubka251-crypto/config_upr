@@ -57,29 +57,31 @@ def execute_script(script_path, username, hostname):
                 break
             elif cmd == "ls":
                 # Эмуляция вывода ls
-                try:
-                    files = os.listdir('.')
-                    for file in files:
-                        print(file)
-                except Exception as e:
-                    print(f"Ошибка выполнения ls: {e}")
+                # try:
+                #     files = os.listdir('.')
+                #     for file in files: # Задание не тебовало данной реализация отлажил на потом ;)
+                #         print(file)
+                # except Exception as e:
+                #     print(f"Ошибка выполнения ls: {e}")
+                print(cmd, args)
             elif cmd == "cd":
                 # Эмуляция смены директории
-                try:
-                    if args:
-                        os.chdir(args[0])
-                        print(f"Переход в директорию: {args[0]}")
-                    else:
-                        os.chdir(os.path.expanduser("~"))
-                        print("Переход в домашнюю директорию")
-                except Exception as e:
-                    print(f"Ошибка выполнения cd: {e}")
-            elif cmd == "pwd":
-                # Показать текущую директорию
-                print(os.getcwd())
-            elif cmd == "echo":
-                # Эмуляция echo
-                print(' '.join(args))
+                # try:
+                #     if args:
+                #         os.chdir(args[0])
+                #         print(f"Переход в директорию: {args[0]}")
+                #     else:
+                #         os.chdir(os.path.expanduser("~")) # Задание не тебовало данной реализация отлажил на потом ;)
+                #         print("Переход в домашнюю директорию")
+                # except Exception as e:
+                #     print(f"Ошибка выполнения cd: {e}")
+                print(cmd, args)
+            # elif cmd == "pwd":
+            #     # Показать текущую директорию
+            #     print(os.getcwd())
+            # elif cmd == "echo": # Задание не тебовало данной реализация отлажил на потом ;)
+            #     # Эмуляция echo
+            #     print(' '.join(args))
             else:
                 print(f"Unsupported command: {cmd}")
 
@@ -114,6 +116,8 @@ def main():
     vfs_path = config.get('vfs_path') or args.vfs_path or '.'
     script_path = config.get('script_path') or args.script_path
 
+
+
     print(f"\nФинальные параметры:")
     print(f"  VFS путь: {vfs_path}")
     print(f"  Путь к скрипту: {script_path}")
@@ -145,24 +149,26 @@ def main():
             if cmd == "exit":
                 break
             elif cmd == "ls":
-                try:
-                    files = os.listdir('.')
-                    for file in files:
-                        print(file)
-                except Exception as e:
-                    print(f"Ошибка: {e}")
+                # try:
+                #     files = os.listdir('.')
+                #     for file in files:
+                #         print(file) # Задание не тебовало данной реализация отлажил на потом ;)
+                # except Exception as e:
+                #     print(f"Ошибка: {e}")
+                print(cmd, args)
             elif cmd == "cd":
-                try:
-                    if args:
-                        os.chdir(args[0])
-                    else:
-                        os.chdir(os.path.expanduser("~"))
-                except Exception as e:
-                    print(f"Ошибка: {e}")
-            elif cmd == "pwd":
-                print(os.getcwd())
-            elif cmd == "echo":
-                print(' '.join(args))
+                # try:
+                #     if args:
+                #         os.chdir(args[0])
+                #     else:
+                #         os.chdir(os.path.expanduser("~")) # Задание не тебовало данной реализация отлажил на потом ;)
+                # except Exception as e:
+                #     print(f"Ошибка: {e}")
+                print(cmd, args)
+            # elif cmd == "pwd":
+            #     print(os.getcwd())
+            # elif cmd == "echo":
+            #     print(' '.join(args))
             else:
                 print("Unsupported command: " + cmd)
 
