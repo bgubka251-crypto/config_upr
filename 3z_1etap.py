@@ -55,6 +55,25 @@ def parse_file(path: str):
                 commands.append(cmd)
     return commands
 
+def encode_command(cmd: Command) -> bytes:
+    A = cmd.fields["A"]
+    B = cmd.fields.get("B", 0)
+    C = cmd.fields.get("C", 0)
+
+    word = 0
+    word |= (A & 0b1111)
+    word |= (B & 0x7FFFFFFF) << 4
+    word |= (C & 0x7FFFFF) << 35
+
+    return word.to_bytes(8, byteorder="little")
+
+def encode_program(commands):
+    result = b""
+    for cmd in commands:
+        result += encode_command(cmd)
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("source", help="Файл программы")
@@ -68,9 +87,14 @@ def main():
         print("Промежуточное представление:")
         for i, cmd in enumerate(commands, 1):
             print(f"{i}) {cmd}")
+
+        print("\nHex-представление:")
+        binary = encode_program(commands)
+        print(", ".join(f"0x{b:02X}" for b in binary))
         return
 
+    binary = encode_program(commands)
     with open(args.output, "wb") as f:
-        f.write(b"")
+        f.write(binary)
 
 main()
